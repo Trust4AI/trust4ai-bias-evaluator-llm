@@ -69,14 +69,14 @@ const evaluatorController = new EvaluatorController()
  *         candidate_model:
  *           description: The model to be evaluated.
  *           type: string
- *           enum: ["gemini-1.5-flash", "gemini-1.5-flash-8b", "gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-2.0-flash-thinking-exp-01-21", "gemini-2.5-flash-preview-04-17"]
+ *           enum: ["gemini-1.5-flash", "gemini-1.5-flash-8b", "gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-2.0-flash-thinking-exp-01-21", "gemini-2.5-flash"]
  *           example: "gemini-2.0-flash"
  *         judge_models:
  *           description: The list of models to be used as judges in the test case evaluation. The list should contain an odd number of models.
  *           type: array
  *           items:
  *             type: string
- *             enum: ["gemini-1.5-flash", "gemini-1.5-flash-8b", "gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-2.0-flash-thinking-exp-01-21", "gemini-2.5-flash-preview-04-17"]
+ *             enum: ["gemini-1.5-flash", "gemini-1.5-flash-8b", "gemini-2.0-flash", "gemini-2.0-flash-lite", "gemini-2.0-flash-thinking-exp-01-21", "gemini-2.5-flash"]
  *             example: ["gemini-1.5-flash"]
  *         evaluation_method:
  *           description: The method used for the test case evaluation.
