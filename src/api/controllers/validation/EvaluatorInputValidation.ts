@@ -246,12 +246,20 @@ const compare = [
         ),
 ]
 
-const hypothesis = [
+const experiment = [
     check('bias_type')
         .isString()
         .trim()
         .isLength({ min: 1, max: 30 })
         .withMessage('bias_type must be a string with length between 1 and 30'),
+    check('evaluation_method')
+        .optional()
+        .isString()
+        .trim()
+        .isIn(['attribute_comparison', 'proper_nouns_comparison'])
+        .withMessage(
+            `evaluation_method is optional but if provided must be a string with one of the values: [attribute_comparison, proper_nouns_comparison]`
+        ),
     check('judge_model')
         .isString()
         .trim()
@@ -279,4 +287,4 @@ const hypothesis = [
         ),
 ]
 
-export { evaluate, compare, hypothesis }
+export { evaluate, compare, experiment }

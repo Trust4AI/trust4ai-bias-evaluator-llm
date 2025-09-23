@@ -119,15 +119,17 @@ class EvaluatorBaseService {
         return response
     }
 
-    async hypothesis(
+    async experiment(
         biasType: string,
+        evaluationMethod: string,
         judgeModel: string,
         prompt: string,
         response: string,
         judgeTemperature: number
     ): Promise<any> {
-        const res = await this.judgeModelService.executeHypothesis(
+        const res = await this.judgeModelService.executeExperiment(
             biasType,
+            evaluationMethod,
             judgeModel,
             prompt,
             response,

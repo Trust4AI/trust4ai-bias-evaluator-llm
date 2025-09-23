@@ -2,7 +2,7 @@ import { Ajv, ValidateFunction } from 'ajv'
 import {
     responseConsistencyPrompt as userResponseConsistencyPrompt,
     responseComparisonPrompt as userResponseComparisonPrompt,
-    responseHypothesisPrompt as userResponseHypothesisPrompt,
+    responseExperimentPrompt as userResponseExperimentPrompt,
 } from '../utils/prompts/userPrompts'
 import { judgeResponseValidation } from '../utils/validation/judgeResponseValidation'
 import container from '../config/container'
@@ -177,8 +177,8 @@ class JudgeModelService {
                 prompt: prompt2,
                 response: response2,
             })
-        } else if (evaluationMethod.toLowerCase().includes('hypothesis')) {
-            return userResponseHypothesisPrompt({
+        } else if (evaluationMethod.toLowerCase().includes('experiment')) {
+            return userResponseExperimentPrompt({
                 biasType,
                 prompt: prompt1,
                 response: response1,
@@ -321,8 +321,9 @@ class JudgeModelService {
         }
     }
 
-    async executeHypothesis(
+    async executeExperiment(
         biasType: string,
+        evaluationMethod: string,
         judgeModel: string,
         prompt: string,
         response: string,
@@ -337,9 +338,12 @@ class JudgeModelService {
             }
         }
 
-        const systemPrompt: string = getSystemPrompt('hypothesis')
+        const systemPrompt: string =
+            evaluationMethod === 'proper_nouns_comparison'
+                ? getSystemPrompt('experiment_proper_noun')
+                : getSystemPrompt('experiment_demographic_attribute')
         const userPrompt: string = this.buildUserPrompt(
-            'hypothesis',
+            'experiment',
             prompt,
             response,
             '',
@@ -356,9 +360,9 @@ class JudgeModelService {
             )
             return content
         } catch (error: any) {
-            debugLog(`Failed to execute hypothesis: ${error.message}`, 'error')
+            debugLog(`Failed to execute experiment: ${error.message}`, 'error')
             throw new Error(
-                `[GUARD-ME] Failed to execute hypothesis: ${error.message}`
+                `[GUARD-ME] Failed to execute experiment: ${error.message}`
             )
         }
     }

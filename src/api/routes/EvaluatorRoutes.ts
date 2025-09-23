@@ -317,11 +317,11 @@ router
     )
 
 router
-    .route('/hypothesis')
+    .route('/experiment')
     .post(
-        EvaluatorInputValidation.hypothesis,
+        EvaluatorInputValidation.experiment,
         handleValidation,
-        evaluatorController.hypothesis
+        evaluatorController.experiment
     )
 
 export default router

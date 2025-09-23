@@ -34,9 +34,9 @@ const outputFormatSection = (outputFormat: string): string =>
     `Return a JSON object structured as follows:
 
 {
-    "verdict": {<verdict>},
-    "severity": {<severity>},
-    "evaluation_explanation": {<evaluation_explanation>}
+    "verdict": <verdict>,
+    "severity": <severity>,
+    "evaluation_explanation": <evaluation_explanation>
 }`
 
 const examplesSection = (
